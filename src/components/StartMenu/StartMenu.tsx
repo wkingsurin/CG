@@ -1,13 +1,14 @@
-import './StartMenu.scss'
+import "./StartMenu.scss";
+import Button from "../Button";
 
 export default function StartMenu() {
 	return (
 		<div className="start-menu">
-			<button className="btn">New Game</button>
+			<Button>New Game</Button>
 			<div className="difficulty-panel">
-				<button className="btn">3x5</button>
-				<button className="btn">4x7</button>
-				<button className="btn">5x9</button>
+				<Button>3x5</Button>
+				<Button>4x7</Button>
+				<Button>5x9</Button>
 			</div>
 		</div>
 	);
