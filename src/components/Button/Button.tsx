@@ -1,9 +1,12 @@
 import "./Button.scss";
 
 type Props = {
+	isActive?: boolean;
 	children: string;
 };
 
-export default function Button({ children }: Props) {
-	return <button className="btn">{children}</button>;
+export default function Button({ isActive, children }: Props) {
+	return (
+		<button className={`btn ${isActive ? "active" : ""}`}>{children}</button>
+	);
 }
