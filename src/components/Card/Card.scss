@@ -1,4 +1,6 @@
 .card {
+	position: relative;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -13,7 +15,55 @@
 	cursor: pointer;
 
 	transition: 0.3s ease-in-out;
+	overflow: hidden;
 }
 .reversed {
 	background: #3f3f3f;
+}
+
+.card div {
+	position: absolute;
+	left: -50%;
+	top: -50%;
+
+	z-index: -1;
+
+	width: 0px;
+	height: 0px;
+
+	background: transparent;
+	border-radius: 50px;
+
+	transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+	background: transparent;
+}
+.card:hover div {
+	background: #3f3f3f;
+	animation: animateBg 1s forwards;
+}
+
+@keyframes animateBg {
+	0% {
+		width: 0px;
+		height: 0px;
+	}
+	33% {
+		width: 125%;
+		height: 50%;
+	}
+	50% {
+		width: 50%;
+		height: 100%;
+	}
+	75% {
+		width: 75%;
+		height: 85%;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+	}
 }

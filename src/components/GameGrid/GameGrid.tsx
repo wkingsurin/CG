@@ -51,7 +51,11 @@ export default function GameGrid() {
 	];
 
 	const cards = length.map((elem, index) => {
-		return <Card key={index}>{elem}</Card>;
+		return (
+			<Card key={index} animate>
+				{elem}
+			</Card>
+		);
 	});
 
 	return <div className="game-grid">{cards}</div>;
