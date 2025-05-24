@@ -5,7 +5,9 @@ import DifficultyPanel from "../DifficultyPanel";
 export default function StartMenu() {
 	return (
 		<div className="start-menu">
-			<Button animate>New Game</Button>
+			<Button animate isActive="none">
+				New Game
+			</Button>
 			<DifficultyPanel></DifficultyPanel>
 		</div>
 	);
