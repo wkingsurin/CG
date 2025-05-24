@@ -4,9 +4,10 @@ import "./Modal.scss";
 
 type Props = {
 	value: number;
+	onClick: () => void;
 };
 
-export default function Modal({ value }: Props) {
+export default function Modal({ value, onClick }: Props) {
 	return (
 		<div className="modal">
 			<h3 className="title">Win</h3>
@@ -17,7 +18,7 @@ export default function Modal({ value }: Props) {
 			</div>
 			<div className="line"></div>
 			<DifficultyPanel activeBtn={"none"}></DifficultyPanel>
-			<Button className="close" isActive="none">
+			<Button className="close" isActive="none" onClick={onClick}>
 				x
 			</Button>
 		</div>

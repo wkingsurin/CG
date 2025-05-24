@@ -6,6 +6,7 @@ type Props = {
 	className?: string;
 	name?: string;
 	children: string;
+	onClick?: () => void;
 };
 
 export default function Button({
@@ -14,11 +15,13 @@ export default function Button({
 	animate,
 	className,
 	name,
+	onClick,
 }: Props) {
 	return (
 		<button
 			className={`btn ${className} ${isActive === name ? "active" : ""}`}
 			name={name}
+			onClick={onClick}
 		>
 			{children}
 			{animate && <div></div>}
