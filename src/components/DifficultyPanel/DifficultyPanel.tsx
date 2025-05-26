@@ -2,20 +2,20 @@ import "./DifficultyPanel.scss";
 import Button from "../Button";
 
 type Props = {
-	activeBtn?: string;
+	difficulty?: string;
 };
 
-export default function DifficultyPanel({ activeBtn }: Props) {
+export default function DifficultyPanel({ difficulty }: Props) {
 	return (
 		<div className="difficulty-panel">
-			<Button isActive={activeBtn} animate name="3x5">
-				3x5
+			<Button difficulty={difficulty} animate name="3x6">
+				3x6
 			</Button>
-			<Button isActive={activeBtn} animate name="4x7">
+			<Button difficulty={difficulty} animate name="4x7">
 				4x7
 			</Button>
-			<Button isActive={activeBtn} animate name="5x9">
-				5x9
+			<Button difficulty={difficulty} animate name="5x8">
+				5x8
 			</Button>
 		</div>
 	);

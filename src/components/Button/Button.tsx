@@ -1,7 +1,7 @@
 import "./Button.scss";
 
 type Props = {
-	isActive?: string;
+	difficulty?: string;
 	animate?: boolean;
 	className?: string;
 	name?: string;
@@ -10,19 +10,17 @@ type Props = {
 };
 
 export default function Button({
-	isActive,
+	difficulty,
 	children,
 	animate,
-	className,
 	name,
 	onClick,
 }: Props) {
+	const isActive =
+		difficulty !== undefined && difficulty === name ? "active" : "";
+
 	return (
-		<button
-			className={`btn ${className} ${isActive === name ? "active" : ""}`}
-			name={name}
-			onClick={onClick}
-		>
+		<button className={`btn ${isActive}`} name={name} onClick={onClick}>
 			{children}
 			{animate && <div></div>}
 		</button>
