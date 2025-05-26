@@ -8,8 +8,8 @@ type Props = {
 export default function Card({ animate, children }: Props) {
 	return (
 		<div className="card">
-			{children}
-			{animate && <div></div>}
+			{animate && <div className="border">{children}</div>}
+			<div className="content"></div>
 		</div>
 	);
 }
