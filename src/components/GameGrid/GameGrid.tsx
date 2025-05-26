@@ -11,5 +11,9 @@ export default function GameGrid() {
 		);
 	});
 
-	return <div className="game-grid">{cards}</div>;
+	return (
+		<div className="grid">
+			<div className="game-grid">{cards}</div>
+		</div>
+	);
 }

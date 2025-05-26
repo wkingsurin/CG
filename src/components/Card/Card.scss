@@ -31,11 +31,11 @@
 
 	transition: 0.3s ease-in-out;
 }
-.reversed {
+.card .reversed {
 	background: rgba(232, 230, 237, 0.75);
 }
 
-.border {
+.card .border {
 	position: absolute;
 	z-index: -1;
 
