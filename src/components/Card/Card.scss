@@ -17,11 +17,17 @@
 }
 
 .card .content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	width: 98px;
 	height: 98px;
 
 	border-radius: 5px;
 	background: #312e39;
+
+	font-size: 48px;
 
 	transition: 0.3s ease-in-out;
 }
