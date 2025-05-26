@@ -1,54 +1,12 @@
 import "./GameGrid.scss";
 import Card from "../Card";
+import { SMILES } from "../../constants/smiles";
 
 export default function GameGrid() {
-	const length = [
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"",
-	];
-
-	const cards = length.map((elem, index) => {
+	const cards = SMILES.map((smile, index) => {
 		return (
 			<Card key={index} animate>
-				{elem}
+				{smile}
 			</Card>
 		);
 	});
