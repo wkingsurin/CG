@@ -1,12 +1,24 @@
 import "./StartMenu.scss";
 import Button from "../Button";
 import DifficultyPanel from "../DifficultyPanel";
+import type { MouseEventHandler } from "react";
 
-export default function StartMenu() {
+type StartMenuProps = {
+	level: number;
+	handleChangeLevel: MouseEventHandler;
+};
+
+export default function StartMenu({
+	level,
+	handleChangeLevel,
+}: StartMenuProps) {
 	return (
 		<div className="start-menu">
 			<Button animate>New Game</Button>
-			<DifficultyPanel difficulty="5x8"></DifficultyPanel>
+			<DifficultyPanel
+				difficulty={`${level}`}
+				handleChangeLevel={handleChangeLevel}
+			></DifficultyPanel>
 		</div>
 	);
 }
