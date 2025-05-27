@@ -2,9 +2,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	width: 100%;
 }
 .grid .game-grid {
-	display: flex;
+	display: grid;
 	flex-wrap: wrap;
 	gap: 5px;
 }
