@@ -17,3 +17,9 @@
 	width: 100%;
 	min-height: 100vh;
 }
+
+.bound {
+	width: calc(100% - 10px);
+	height: 1px;
+	background: #312E39;
+}

@@ -27,6 +27,7 @@ export default function App() {
 				level={level}
 				handleChangeLevel={handleChangeLevel}
 			></StartMenu>
+			<div className="bound"></div>
 			<GameGrid level={level}></GameGrid>
 			<Overlay open={open}>
 				<Modal value={23} onClick={handleClose}></Modal>
