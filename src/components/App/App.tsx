@@ -5,10 +5,15 @@ import Modal from "../Modal";
 import Overlay from "../Overlay/Overlay";
 
 import { useState, type MouseEventHandler } from "react";
+import { doubleArray, shuffle } from "../../utils/utils";
+import { emoji, createGrid } from "../../constants/smiles";
 
 export default function App() {
 	const [level, setLevel] = useState(1);
 	const [open, setOpen] = useState(false);
+	const [grid, setGrid] = useState(
+		createGrid(emoji, doubleArray, shuffle, level)
+	);
 
 	const handleClose = (): void => {
 		setOpen(() => false);
@@ -19,6 +24,11 @@ export default function App() {
 		if (!target.name) return;
 
 		setLevel(() => Number(target.name));
+		setGrid(() => createGrid(emoji, doubleArray, shuffle, Number(target.name)));
+	};
+
+	const handleNewGame = (): void => {
+		setGrid((g) => shuffle(g));
 	};
 
 	return (
@@ -26,9 +36,10 @@ export default function App() {
 			<StartMenu
 				level={level}
 				handleChangeLevel={handleChangeLevel}
+				handleNewGame={handleNewGame}
 			></StartMenu>
 			<div className="bound"></div>
-			<GameGrid level={level}></GameGrid>
+			<GameGrid grid={grid}></GameGrid>
 			<Overlay open={open}>
 				<Modal value={23} onClick={handleClose}></Modal>
 			</Overlay>
