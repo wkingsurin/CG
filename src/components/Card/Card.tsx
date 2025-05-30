@@ -1,26 +1,26 @@
 import "./Card.scss";
-import { useState, type MouseEventHandler } from "react";
+import { useEffect, useState, type MouseEventHandler } from "react";
 
 type Props = {
 	children: string;
 	animate?: boolean;
 };
 
-const CARD = {
-	status: "closed",
-};
-
 export default function Card({ animate, children }: Props) {
-	const [card, setCard] = useState({ ...CARD, image: children });
+	const [card, setCard] = useState({ status: "closed", emoji: "" });
 
 	const onClick: MouseEventHandler = () => {
-		setCard(() => ({ ...card, status: "waiting" }));
+		setCard(() => ({ status: "waiting", emoji: children }));
 	};
+
+	useEffect(() => {
+		setCard((c) => ({ ...c, status: "closed" }));
+	}, [children]);
 
 	return (
 		<div className="card" onClick={onClick}>
 			{animate && <div className="border"></div>}
-			<div className="content">{card.status !== "closed" && card.image}</div>
+			<div className="content">{card.status !== "closed" && card.emoji}</div>
 		</div>
 	);
 }
