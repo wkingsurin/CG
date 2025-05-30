@@ -2,7 +2,7 @@ export const doubleArray = (array: string[]): string[] => {
 	return [...array, ...array];
 };
 
-export const shuffle = (array: string[]): string[] => {
+export const shuffle = <T>(array: T[]): T[] => {
 	const arrayCopy = array.slice();
 	let currentIndex = array.length;
 	let randomIndex
