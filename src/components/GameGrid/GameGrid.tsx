@@ -1,15 +1,12 @@
 import "./GameGrid.scss";
 import Card from "../Card";
-import { emoji, createGrid } from "../../constants/smiles";
-import { shuffle, doubleArray } from "../../utils/utils";
 
 type GridProps = {
-	level: number;
+	grid: {emoji: string, id: number}[];
 };
 
-export default function GameGrid({ level = 1 }: GridProps) {
-	const grid = createGrid(emoji, doubleArray, shuffle, level);
-	const gridColumns: number = level === 1 ? 6 : level === 2 ? 7 : 8;
+export default function GameGrid({ grid }: GridProps) {
+	const gridColumns: number = grid.length === 18 ? 6 : grid.length === 28 ? 7 : 8;
 
 	const cards = grid.map((smile) => {
 		return (
