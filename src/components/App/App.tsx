@@ -24,6 +24,10 @@ export default function App() {
 		if (!target.name) return;
 
 		setLevel(() => Number(target.name));
+
+		if (Number(target.name) === level) {
+			return;
+		}
 		setGrid(() => createGrid(emoji, doubleArray, shuffle, Number(target.name)));
 	};
 
