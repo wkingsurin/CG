@@ -6,15 +6,17 @@ import type { MouseEventHandler } from "react";
 type StartMenuProps = {
 	level: number;
 	handleChangeLevel: MouseEventHandler;
+	handleNewGame: () => void;
 };
 
 export default function StartMenu({
 	level,
 	handleChangeLevel,
+	handleNewGame
 }: StartMenuProps) {
 	return (
 		<div className="start-menu">
-			<Button animate>New Game</Button>
+			<Button animate onClick={handleNewGame}>New Game</Button>
 			<DifficultyPanel
 				difficulty={`${level}`}
 				handleChangeLevel={handleChangeLevel}
