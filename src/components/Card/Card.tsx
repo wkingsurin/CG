@@ -1,21 +1,19 @@
 import "./Card.scss";
-import { useEffect, useState, type MouseEventHandler } from "react";
+import { type MouseEventHandler } from "react";
 
 type Props = {
-	children: string;
+	grid: { emoji: string; status: string; id: number }[];
+	setGrid: React.Dispatch<
+		React.SetStateAction<{ emoji: string; status: string; id: number }[]>
+	>;
+	card: { emoji: string; status: string; id: number };
 	animate?: boolean;
 };
 
-export default function Card({ animate, children }: Props) {
-	const [card, setCard] = useState({ status: "closed", emoji: "" });
-
-	const onClick: MouseEventHandler = () => {
-		setCard(() => ({ status: "waiting", emoji: children }));
+export default function Card({ card, animate }: Props) {
+	const onClick: MouseEventHandler = (e) => {
+		console.log(e.target);
 	};
-
-	useEffect(() => {
-		setCard((c) => ({ ...c, status: "closed" }));
-	}, [children]);
 
 	return (
 		<div className="card" onClick={onClick}>
