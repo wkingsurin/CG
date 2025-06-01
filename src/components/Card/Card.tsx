@@ -10,9 +10,57 @@ type Props = {
 	animate?: boolean;
 };
 
-export default function Card({ card, animate }: Props) {
+export default function Card({ grid, setGrid, card, animate }: Props) {
 	const onClick: MouseEventHandler = (e) => {
-		console.log(e.target);
+		const compare = grid.filter((c) => c.status === "waiting");
+
+		if (card.status === "completed") {
+			console.log("Карточки совпадают");
+			return;
+		}
+
+		if (card.status === "waiting") {
+			console.log(`Закрыть карточку`);
+			setGrid((g) => {
+				return g.map((c) =>
+					c.id === card.id ? { ...c, status: "closed" } : c
+				);
+			});
+			return;
+		}
+
+		if (card.status === "closed" && compare.length < 2) {
+			console.log(`Открыть карточку`);
+			setGrid((g) =>
+				g.map((c) => {
+					return c.id === card.id ? { ...c, status: "waiting" } : c;
+				})
+			);
+
+			if (compare.length === 1 && compare[0].emoji !== card.emoji) {
+				console.log(`Закрыть карточки`);
+				setTimeout(() => {
+					setGrid((g) =>
+						g.map((c) => {
+							return (c.emoji === card.emoji && c.status === "completed") ||
+								c.status === "completed"
+								? { ...c, status: "completed" }
+								: { ...c, status: "closed" };
+						})
+					);
+				}, 1500);
+			}
+			if (compare.length === 1 && compare[0].emoji === card.emoji) {
+				console.log(`Фиксируем карточки в статусе: 'completed'`);
+				setGrid((g) => {
+					return g.map((c) => {
+						return c.emoji === card.emoji || c.status === "completed"
+							? { ...c, status: "completed" }
+							: { ...c, status: "closed" };
+					});
+				});
+			}
+		}
 	};
 
 	return (
