@@ -26,12 +26,15 @@ export const createGrid = (
 	doubleArray: (array: string[]) => string[],
 	shuffle: (array: string[]) => string[],
 	level: number
-): { emoji: string; id: number }[] => {
+): { emoji: string; status: string; id: number }[] => {
 	const to = level === 1 ? 9 : level === 2 ? 14 : emoji.length;
 
 	return shuffle(doubleArray(emoji.slice(0, to))).map(
-		(emoji: string, index: number): { emoji: string; id: number } => {
-			return { emoji: emoji, id: index };
+		(
+			emoji: string,
+			index: number
+		): { emoji: string; status: string; id: number } => {
+			return { emoji: emoji, status: "closed", id: index };
 		}
 	);
 };

@@ -5,7 +5,7 @@ export const doubleArray = (array: string[]): string[] => {
 export const shuffle = <T>(array: T[]): T[] => {
 	const arrayCopy = array.slice();
 	let currentIndex = array.length;
-	let randomIndex
+	let randomIndex;
 
 	while (currentIndex != 0) {
 		randomIndex = Math.floor(Math.random() * currentIndex);

@@ -43,7 +43,7 @@ export default function App() {
 				handleNewGame={handleNewGame}
 			></StartMenu>
 			<div className="bound"></div>
-			<GameGrid grid={grid}></GameGrid>
+			<GameGrid grid={grid} setGrid={setGrid}></GameGrid>
 			<Overlay open={open}>
 				<Modal value={23} onClick={handleClose}></Modal>
 			</Overlay>
