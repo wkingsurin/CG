@@ -32,7 +32,7 @@ export default function App() {
 	};
 
 	const handleNewGame = (): void => {
-		setGrid((g) => shuffle(g));
+		setGrid((g) => shuffle(g.map((c) => ({ ...c, status: "closed" }))));
 	};
 
 	return (
