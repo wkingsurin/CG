@@ -3,6 +3,7 @@ import StartMenu from "../StartMenu";
 import GameGrid from "../GameGrid";
 import Modal from "../Modal";
 import Overlay from "../Overlay/Overlay";
+import ModalConfirm from "../ModalConfirm";
 
 import { useState, type MouseEventHandler } from "react";
 import { doubleArray, shuffle } from "../../utils/utils";
@@ -14,6 +15,7 @@ export default function App() {
 	const [grid, setGrid] = useState(
 		createGrid(emoji, doubleArray, shuffle, level)
 	);
+	const [openConfirm, setOpenConfirm] = useState(false);
 
 	const handleClose = (): void => {
 		setOpen(() => false);
@@ -32,7 +34,17 @@ export default function App() {
 	};
 
 	const handleNewGame = (): void => {
+		if (!openConfirm) {
+			setOpenConfirm(() => true);
+			return;
+		}
+
 		setGrid((g) => shuffle(g.map((c) => ({ ...c, status: "closed" }))));
+		setOpenConfirm((oc) => !oc);
+	};
+
+	const handleBack = (): void => {
+		setOpenConfirm(() => false);
 	};
 
 	return (
@@ -44,6 +56,12 @@ export default function App() {
 			></StartMenu>
 			<div className="bound"></div>
 			<GameGrid grid={grid} setGrid={setGrid}></GameGrid>
+			<Overlay open={openConfirm}>
+				<ModalConfirm
+					handleBack={handleBack}
+					handleNewGame={handleNewGame}
+				></ModalConfirm>
+			</Overlay>
 			<Overlay open={open}>
 				<Modal value={23} onClick={handleClose}></Modal>
 			</Overlay>
