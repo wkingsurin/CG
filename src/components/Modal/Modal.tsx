@@ -1,26 +1,27 @@
-import Button from "../Button";
 import DifficultyPanel from "../DifficultyPanel";
+import type { MouseEvent } from "react";
 import "./Modal.scss";
 
 type Props = {
-	value: number;
-	onClick: () => void;
+	level?: number;
+	onClick?: () => void;
+	handleChangeLevel: (e: MouseEvent, modal: boolean) => void;
 };
 
-export default function Modal({ value, onClick }: Props) {
+export default function Modal({ handleChangeLevel }: Props) {
 	return (
 		<div className="modal">
-			<h3 className="title">Win</h3>
-			<div className="line"></div>
-			<div className="content">
-				<p>Attempts:</p>
-				<p className="value">{value}</p>
+			<p className="icon">👍</p>
+			<div className="title-block">
+				<h3 className="title">
+					Congratulations!
+					<br />
+					You Win!
+				</h3>
 			</div>
-			<div className="line"></div>
-			<DifficultyPanel activeBtn={"none"}></DifficultyPanel>
-			<Button className="close" isActive="none" onClick={onClick}>
-				x
-			</Button>
+			<DifficultyPanel
+				handleChangeLevel={(e: MouseEvent) => handleChangeLevel(e, true)}
+			></DifficultyPanel>
 		</div>
 	);
 }

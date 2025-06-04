@@ -11,17 +11,16 @@
 
 	gap: 15px;
 	padding: 25px;
-
-	border-radius: 7px;
-	border: 1px solid #3f3f3f;
-
-	background: #24242a;
 }
 
+.modal .icon {
+	font-size: 28px;
+}
 .modal .title {
 	font-size: 28px;
 	font-weight: 600;
 	line-height: 34px;
+	text-align: center;
 }
 
 .modal .content {
@@ -74,4 +73,20 @@
 }
 .modal .close:hover {
 	border-color: #3f3f3f;
+}
+
+.modal .btn {
+	background: #312e39;
+	border-color: #524b5d;
+}
+.modal .btn.active {
+	background: #524b5d;
+}
+.modal .btn:hover div {
+	background: #3E3A48;
+	opacity: 1;
+}
+.modal .btn:hover {
+	border-color: #524b5d;
+	background: #3E3A48;
 }
