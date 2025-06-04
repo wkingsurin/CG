@@ -5,7 +5,7 @@ import Modal from "../Modal";
 import Overlay from "../Overlay/Overlay";
 import ModalConfirm from "../ModalConfirm";
 
-import { useState, type MouseEventHandler } from "react";
+import { useState, type MouseEvent } from "react";
 import { doubleArray, shuffle } from "../../utils/utils";
 import { emoji, createGrid } from "../../constants/smiles";
 
@@ -16,17 +16,13 @@ export default function App() {
 	);
 	const [openConfirm, setOpenConfirm] = useState(false);
 
-	const handleClose = (): void => {
-		// setOpen(() => false);
-	};
-
-	const handleChangeLevel: MouseEventHandler = (e) => {
+	const handleChangeLevel = (e: MouseEvent, modal: boolean) => {
 		const target = e.target as HTMLButtonElement;
 		if (!target.name) return;
 
 		setLevel(() => Number(target.name));
 
-		if (Number(target.name) === level) {
+		if (Number(target.name) === level && !modal) {
 			return;
 		}
 		setGrid(() => createGrid(emoji, doubleArray, shuffle, Number(target.name)));
@@ -53,7 +49,7 @@ export default function App() {
 		<div className="app">
 			<StartMenu
 				level={level}
-				handleChangeLevel={handleChangeLevel}
+				handleChangeLevel={(e: MouseEvent) => handleChangeLevel(e, false)}
 				handleNewGame={handleNewGame}
 			></StartMenu>
 			<div className="bound"></div>
@@ -65,7 +61,9 @@ export default function App() {
 				></ModalConfirm>
 			</Overlay>
 			<Overlay open={isFilledGrid}>
-				<Modal value={23} onClick={handleClose}></Modal>
+				<Modal
+					handleChangeLevel={(e: MouseEvent) => handleChangeLevel(e, true)}
+				></Modal>
 			</Overlay>
 		</div>
 	);

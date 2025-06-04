@@ -15,7 +15,7 @@ export default function ModalConfirm({
 			<h2 className="title">Are you sure?</h2>
 			<div className="controls">
 				<Button onClick={handleBack}>Back</Button>
-				<Button onClick={handleNewGame}>New Game</Button>
+				<Button onClick={handleNewGame}>Yes</Button>
 			</div>
 		</div>
 	);
