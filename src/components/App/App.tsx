@@ -11,14 +11,13 @@ import { emoji, createGrid } from "../../constants/smiles";
 
 export default function App() {
 	const [level, setLevel] = useState(1);
-	const [open, setOpen] = useState(false);
 	const [grid, setGrid] = useState(
 		createGrid(emoji, doubleArray, shuffle, level)
 	);
 	const [openConfirm, setOpenConfirm] = useState(false);
 
 	const handleClose = (): void => {
-		setOpen(() => false);
+		// setOpen(() => false);
 	};
 
 	const handleChangeLevel: MouseEventHandler = (e) => {
@@ -47,6 +46,9 @@ export default function App() {
 		setOpenConfirm(() => false);
 	};
 
+	const isFilledGrid =
+		grid.filter((c) => c.status === "completed").length === grid.length;
+
 	return (
 		<div className="app">
 			<StartMenu
@@ -62,7 +64,7 @@ export default function App() {
 					handleNewGame={handleNewGame}
 				></ModalConfirm>
 			</Overlay>
-			<Overlay open={open}>
+			<Overlay open={isFilledGrid}>
 				<Modal value={23} onClick={handleClose}></Modal>
 			</Overlay>
 		</div>
