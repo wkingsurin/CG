@@ -1,18 +1,23 @@
 import "./DifficultyPanel.scss";
 import Button from "../Button";
-import type { MouseEventHandler } from "react";
+import type { MouseEvent } from "react";
 
 type DifficultyProps = {
-	difficulty?: string;
-	handleChangeLevel: MouseEventHandler;
+	difficulty?: number;
+	modal?: boolean;
+	handleChangeLevel: (e: MouseEvent, modal: boolean) => void;
 };
 
 export default function DifficultyPanel({
 	difficulty,
 	handleChangeLevel,
+	modal = false,
 }: DifficultyProps) {
 	return (
-		<div className="difficulty-panel" onClick={handleChangeLevel}>
+		<div
+			className="difficulty-panel"
+			onClick={(e: MouseEvent) => handleChangeLevel(e, modal)}
+		>
 			<Button difficulty={difficulty} animate name="1">
 				3x6
 			</Button>

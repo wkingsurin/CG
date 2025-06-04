@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function Card({ grid, setGrid, card, animate }: Props) {
-	const onClick: MouseEventHandler = (e) => {
+	const onClick: MouseEventHandler = () => {
 		const compare = grid.filter((c) => c.status === "waiting");
 
 		if (card.status === "completed") {
