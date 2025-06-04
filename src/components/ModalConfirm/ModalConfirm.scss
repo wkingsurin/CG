@@ -1,0 +1,21 @@
+.confirm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 25px;
+}
+.confirm .title {
+	font-size: 28px;
+	font-weight: 700;
+}
+.confirm .controls {
+	display: flex;
+	gap: 50px;
+}
+.confirm .controls .btn {
+	background: #312e39;
+	border-color: #524b5d;
+}
+.confirm .controls .btn:hover {
+	background: #3E3A48;
+}
