@@ -63,10 +63,28 @@ export default function Card({ grid, setGrid, card, animate }: Props) {
 		}
 	};
 
+	const isCompleted = card.status === "completed";
+
 	return (
-		<div className="card" onClick={onClick}>
-			{animate && <div className="border"></div>}
-			<div className="content">{card.status !== "closed" && card.emoji}</div>
+		<div
+			className="card"
+			onClick={onClick}
+			style={{ cursor: isCompleted ? "default" : "pointer" }}
+		>
+			{animate && (
+				<div
+					className="border"
+					style={{
+						background: isCompleted ? "transparent" : "",
+					}}
+				></div>
+			)}
+			<div
+				className="content"
+				style={{ background: isCompleted ? "#1f1f24" : "" }}
+			>
+				{card.status !== "closed" && card.emoji}
+			</div>
 		</div>
 	);
 }
