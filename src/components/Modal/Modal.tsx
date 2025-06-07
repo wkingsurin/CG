@@ -1,11 +1,11 @@
 import DifficultyPanel from "../DifficultyPanel";
-import type { MouseEvent } from "react";
+import React from "react";
 import "./Modal.scss";
 
 type Props = {
 	level?: number;
 	onClick?: () => void;
-	handleChangeLevel: (e: MouseEvent, modal: boolean) => void;
+	handleChangeLevel: (e: React.MouseEvent, modal: boolean) => void;
 };
 
 export default function Modal({ handleChangeLevel }: Props) {
@@ -20,7 +20,8 @@ export default function Modal({ handleChangeLevel }: Props) {
 				</h3>
 			</div>
 			<DifficultyPanel
-				handleChangeLevel={(e: MouseEvent) => handleChangeLevel(e, true)}
+				handleChangeLevel={handleChangeLevel}
+				modal={true}
 			></DifficultyPanel>
 		</div>
 	);

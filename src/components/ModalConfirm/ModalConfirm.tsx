@@ -1,9 +1,10 @@
 import "./ModalConfirm.scss";
 import Button from "../Button";
+import React from "react";
 
 interface IModalConfirm {
 	handleBack: () => void;
-	handleNewGame: () => void;
+	handleNewGame: (e: React.MouseEvent) => void;
 }
 
 export default function ModalConfirm({
