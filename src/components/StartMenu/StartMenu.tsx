@@ -4,13 +4,13 @@ import DifficultyPanel from "../DifficultyPanel";
 import React from "react";
 
 type StartMenuProps = {
-	level: number;
+	prevLevel: number;
 	handleChangeLevel: (e: React.MouseEvent, modal: boolean) => void;
-	handleNewGame: (e: React.MouseEvent) => void;
+	handleNewGame: () => void;
 };
 
 export default function StartMenu({
-	level,
+	prevLevel,
 	handleChangeLevel,
 	handleNewGame,
 }: StartMenuProps) {
@@ -20,7 +20,7 @@ export default function StartMenu({
 				New Game
 			</Button>
 			<DifficultyPanel
-				difficulty={level}
+				prevLevel={prevLevel}
 				handleChangeLevel={handleChangeLevel}
 				modal={false}
 			></DifficultyPanel>
