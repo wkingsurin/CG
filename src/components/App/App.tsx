@@ -30,6 +30,12 @@ export default function App() {
 			return;
 		}
 
+		if (!openConfirm) {
+			setLevel(() => Number(name));
+			handleConfirm(Number(name));
+			return;
+		}
+
 		setLevel(() => Number(name));
 		openModalConfirm();
 	};
@@ -68,9 +74,7 @@ export default function App() {
 				></ModalConfirm>
 			</Overlay>
 			<Overlay open={isFilledGrid}>
-				<Modal
-					handleChangeLevel={handleChangeLevel}
-				></Modal>
+				<Modal handleChangeLevel={handleChangeLevel}></Modal>
 			</Overlay>
 		</div>
 	);
