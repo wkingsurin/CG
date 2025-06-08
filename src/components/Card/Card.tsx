@@ -2,6 +2,8 @@ import "./Card.scss";
 import { type MouseEventHandler } from "react";
 
 type Props = {
+	start: boolean;
+	setStart: React.Dispatch<React.SetStateAction<boolean>>;
 	grid: { emoji: string; status: string; id: number }[];
 	setGrid: React.Dispatch<
 		React.SetStateAction<{ emoji: string; status: string; id: number }[]>
@@ -10,7 +12,14 @@ type Props = {
 	animate?: boolean;
 };
 
-export default function Card({ grid, setGrid, card, animate }: Props) {
+export default function Card({
+	start,
+	setStart,
+	grid,
+	setGrid,
+	card,
+	animate,
+}: Props) {
 	const onClick: MouseEventHandler = () => {
 		const compare = grid.filter((c) => c.status === "waiting");
 
@@ -31,6 +40,9 @@ export default function Card({ grid, setGrid, card, animate }: Props) {
 
 		if (card.status === "closed" && compare.length < 2) {
 			console.log(`Открыть карточку`);
+			if (!start) {
+				setStart(() => true);
+			}
 			setGrid((g) =>
 				g.map((c) => {
 					return c.id === card.id ? { ...c, status: "waiting" } : c;
