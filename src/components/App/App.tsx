@@ -11,6 +11,7 @@ import { emoji, createGrid } from "../../constants/smiles";
 
 export default function App() {
 	const [level, setLevel] = useState(1);
+	const [start, setStart] = useState(false);
 	const [grid, setGrid] = useState(
 		createGrid(emoji, doubleArray, shuffle, level)
 	);
@@ -30,7 +31,7 @@ export default function App() {
 			return;
 		}
 
-		if (!openConfirm) {
+		if (!start) {
 			setLevel(() => Number(name));
 			handleConfirm(Number(name));
 			return;
@@ -65,7 +66,12 @@ export default function App() {
 				handleNewGame={handleNewGame}
 			></StartMenu>
 			<div className="bound"></div>
-			<GameGrid grid={grid} setGrid={setGrid}></GameGrid>
+			<GameGrid
+				start={start}
+				setStart={setStart}
+				grid={grid}
+				setGrid={setGrid}
+			></GameGrid>
 			<Overlay open={openConfirm}>
 				<ModalConfirm
 					level={level}
