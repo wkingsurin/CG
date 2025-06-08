@@ -16,29 +16,36 @@ export default function App() {
 	);
 	const [openConfirm, setOpenConfirm] = useState(false);
 
+	const openModalConfirm = (): void => {
+		setOpenConfirm(() => true);
+	};
+
+	const closeModalConfirm = (): void => {
+		setOpenConfirm(() => false);
+	};
+
 	const handleChangeLevel = (e: React.MouseEvent, modal: boolean) => {
 		const { name } = e.target as HTMLButtonElement;
 		if (!name || (Number(name) === level && !modal)) {
 			return;
 		}
 
-		handleNewGame(e);
+		setLevel(() => Number(name));
+		openModalConfirm();
 	};
 
-	const handleNewGame = (e: React.MouseEvent): void => {
-		const { name } = e.target as HTMLButtonElement;
-		if (!openConfirm) {
-			setOpenConfirm(() => true);
-			return;
-		}
-
-		setGrid((g) => shuffle(g.map((c) => ({ ...c, status: "closed" }))));
-		setLevel(() => Number(name));
-		setOpenConfirm(() => false);
+	const handleNewGame = (): void => {
+		openModalConfirm();
 	};
 
 	const handleBack = (): void => {
-		setOpenConfirm(() => false);
+		closeModalConfirm();
+	};
+
+	const handleConfirm = (level?: React.MouseEvent | number): void => {
+		if (typeof level !== "number") return;
+		setGrid(() => createGrid(emoji, doubleArray, shuffle, level));
+		closeModalConfirm();
 	};
 
 	const isFilledGrid =
@@ -47,7 +54,7 @@ export default function App() {
 	return (
 		<div className="app">
 			<StartMenu
-				level={level}
+				prevLevel={grid.length}
 				handleChangeLevel={(e: React.MouseEvent) => handleChangeLevel(e, false)}
 				handleNewGame={handleNewGame}
 			></StartMenu>
@@ -55,12 +62,16 @@ export default function App() {
 			<GameGrid grid={grid} setGrid={setGrid}></GameGrid>
 			<Overlay open={openConfirm}>
 				<ModalConfirm
+					level={level}
 					handleBack={handleBack}
-					handleNewGame={handleNewGame}
+					handleConfirm={handleConfirm}
 				></ModalConfirm>
 			</Overlay>
 			<Overlay open={isFilledGrid}>
-				<Modal handleChangeLevel={handleChangeLevel}></Modal>
+				<Modal
+					prevLevel={grid.length}
+					handleChangeLevel={handleChangeLevel}
+				></Modal>
 			</Overlay>
 		</div>
 	);
