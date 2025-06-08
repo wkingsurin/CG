@@ -3,12 +3,12 @@ import React from "react";
 import "./Modal.scss";
 
 type Props = {
-	level?: number;
+	prevLevel?: number;
 	onClick?: () => void;
 	handleChangeLevel: (e: React.MouseEvent, modal: boolean) => void;
 };
 
-export default function Modal({ handleChangeLevel }: Props) {
+export default function Modal({ prevLevel, handleChangeLevel }: Props) {
 	return (
 		<div className="modal">
 			<p className="icon">👍</p>
@@ -20,6 +20,7 @@ export default function Modal({ handleChangeLevel }: Props) {
 				</h3>
 			</div>
 			<DifficultyPanel
+				prevLevel={prevLevel}
 				handleChangeLevel={handleChangeLevel}
 				modal={true}
 			></DifficultyPanel>

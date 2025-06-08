@@ -3,7 +3,7 @@ import Button from "../Button";
 import React from "react";
 
 type DifficultyProps = {
-	prevLevel: number;
+	prevLevel?: number;
 	modal: boolean;
 	handleChangeLevel: (e: React.MouseEvent, modal: boolean) => void;
 };

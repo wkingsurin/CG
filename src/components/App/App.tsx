@@ -69,7 +69,6 @@ export default function App() {
 			</Overlay>
 			<Overlay open={isFilledGrid}>
 				<Modal
-					prevLevel={grid.length}
 					handleChangeLevel={handleChangeLevel}
 				></Modal>
 			</Overlay>
