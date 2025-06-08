@@ -55,3 +55,46 @@
 	transform: rotate(45deg);
 	background: rgba(232, 230, 237, 0.75);
 }
+
+.entering:not(.completed) .content {
+	opacity: 1;
+	transform: rotateY(180deg);
+}
+.entering:not(.completed) {
+	transform: scale(1.02);
+	transition: 0.3s ease-in-out;
+}
+.entering:not(.completed) .border {
+	opacity: 0;
+	transition: none;
+}
+
+.entered:not(.completed) .content {
+	opacity: 1;
+	transform: rotateY(0);
+}
+.entered:not(.completed) {
+	transform: scale(1);
+}
+.entered .border {
+	opacity: 1;
+}
+
+.exiting:not(.completed) .content {
+	opacity: 1;
+	transform: rotateY(90deg);
+	transition: 0.1s ease-in-out;
+}
+.exiting:not(.completed) {
+	transform: scale(1.02);
+}
+.exiting:not(.completed) .border {
+	opacity: 0;
+}
+
+.exited:not(.completed) {
+	transition: 0.1s ease-in-out;
+}
+.exited:not(.completed) .content {
+	transform: translateY(0deg);
+}

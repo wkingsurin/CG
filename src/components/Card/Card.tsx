@@ -10,6 +10,8 @@ type Props = {
 	>;
 	card: { emoji: string; status: string; id: number };
 	animate?: boolean;
+	className: string;
+	ref: React.Ref<HTMLDivElement>;
 };
 
 export default function Card({
@@ -19,6 +21,8 @@ export default function Card({
 	setGrid,
 	card,
 	animate,
+	className,
+	ref,
 }: Props) {
 	const onClick: MouseEventHandler = () => {
 		const compare = grid.filter((c) => c.status === "waiting");
@@ -79,9 +83,10 @@ export default function Card({
 
 	return (
 		<div
-			className="card"
+			className={`card ${className} ${card.status}`}
 			onClick={onClick}
 			style={{ cursor: isCompleted ? "default" : "pointer" }}
+			ref={ref}
 		>
 			{animate && (
 				<div
