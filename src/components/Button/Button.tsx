@@ -4,10 +4,10 @@ import React from "react";
 type Props = {
 	difficulty?: number;
 	animate?: boolean;
-	className?: string;
 	name?: string;
 	children: string;
-	onClick?: (e: React.MouseEvent) => void;
+	level?: number;
+	onClick?: (e: React.MouseEvent | number) => void;
 };
 
 export default function Button({
@@ -15,16 +15,23 @@ export default function Button({
 	children,
 	animate,
 	name,
+	level,
 	onClick,
 }: Props) {
 	const isActive =
-		difficulty !== undefined && `${difficulty}` === name ? "active" : "";
+		difficulty === 18 && name === "1"
+			? "active"
+			: difficulty === 28 && name === "2"
+			? "active"
+			: difficulty === 40 && name === "3"
+			? "active"
+			: "";
 
 	return (
 		<button
 			className={`btn ${isActive}`}
 			name={name}
-			onClick={(e: React.MouseEvent) => onClick?.(e)}
+			onClick={(e: React.MouseEvent) => onClick?.(level ? level : e)}
 		>
 			{children}
 			{animate && <div></div>}
