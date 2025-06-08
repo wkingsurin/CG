@@ -46,12 +46,14 @@ export default function App() {
 	};
 
 	const handleBack = (): void => {
+		setLevel(() => (grid.length === 18 ? 1 : grid.length === 28 ? 2 : 3));
 		closeModalConfirm();
 	};
 
 	const handleConfirm = (level?: React.MouseEvent | number): void => {
 		if (typeof level !== "number") return;
 		setGrid(() => createGrid(emoji, doubleArray, shuffle, level));
+		setStart(() => false);
 		closeModalConfirm();
 	};
 
